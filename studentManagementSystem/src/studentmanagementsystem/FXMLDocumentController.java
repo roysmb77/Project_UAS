@@ -27,10 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- *
- * @author WINDOWS 10
- */
+
 public class FXMLDocumentController implements Initializable {
     
     @FXML
@@ -53,7 +50,7 @@ public class FXMLDocumentController implements Initializable {
     private PreparedStatement prepare;
     private ResultSet result;
     
-//    NOW LETS CREATE OUR DATABASE : ) 
+ 
     
     private double x= 0 ;
     private double y= 0;
@@ -64,7 +61,7 @@ public class FXMLDocumentController implements Initializable {
         
         connect = database.connectDb();
         
-        try{ // IT WORKS GOOD : ) NOW LETS DESIGN THE DASHBOARD FORM : ) 
+        try{  
             Alert alert;
             
             prepare = connect.prepareStatement(sql);
@@ -81,7 +78,7 @@ public class FXMLDocumentController implements Initializable {
                 alert.showAndWait();
             }else{
                 if(result.next()){
-//                    THEN PROCEED TO DASHBOARD FORM
+
 
                     getData.username = username.getText();
 
@@ -91,9 +88,9 @@ public class FXMLDocumentController implements Initializable {
                     alert.setContentText("Successfully Login!");
                     alert.showAndWait();
                     
-//                    TO HIDE THE LOGIN FORM
+
                     loginBtn.getScene().getWindow().hide();
-                    //LINK YOUR DASHBOARD 
+                   
                     Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
                     
                     Stage stage = new Stage();
@@ -131,11 +128,10 @@ public class FXMLDocumentController implements Initializable {
         System.exit(0);
     }
     
-    //LETS NAME THE COMPONENTS ON LOGIN FORM : )
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }

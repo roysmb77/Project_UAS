@@ -51,11 +51,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- *
- * SUBSCRIBE OUR YOUTUBE CHANNEL -> https://www.youtube.com/channel/UCPgcmw0LXToDn49akUEJBkQ
- * THANKS FOR YOUR SUPPORT : ) 
- */
+
 public class dashboardController implements Initializable {
 
     @FXML
@@ -447,7 +443,6 @@ public class dashboardController implements Initializable {
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             } else {
-                // CHECK IF THE STUDENTNUMBER IS ALREADY EXIST
                 String checkData = "SELECT studentNum FROM student WHERE studentNum = '"
                         + addStudents_studentNum.getText() + "'";
 
@@ -501,9 +496,7 @@ public class dashboardController implements Initializable {
                     alert.setContentText("Successfully Added!");
                     alert.showAndWait();
 
-                    // TO UPDATE THE TABLEVIEW
                     addStudentsShowListData();
-                    // TO CLEAR THE FIELDS
                     addStudentsClear();
                 }
             }
@@ -513,6 +506,7 @@ public class dashboardController implements Initializable {
         }
     }
 
+    
     public void addStudentsUpdate() {
 
         String uri = getData.path;
@@ -565,9 +559,7 @@ public class dashboardController implements Initializable {
                     alert.setContentText("Successfully Updated!");
                     alert.showAndWait();
 
-                    // TO UPDATE THE TABLEVIEW
                     addStudentsShowListData();
-                    // TO CLEAR THE FIELDS
                     addStudentsClear();
 
                 } else {
@@ -621,7 +613,6 @@ public class dashboardController implements Initializable {
                     prepare = connect.prepareStatement(checkData);
                     result = prepare.executeQuery();
 
-                    // IF THE STUDENT NUMBER IS EXIST THEN PROCEED TO DELETE
                     if (result.next()) {
                         String deleteGrade = "DELETE FROM student_grade WHERE "
                                 + "studentNum = '" + addStudents_studentNum.getText() + "'";
@@ -629,7 +620,7 @@ public class dashboardController implements Initializable {
                         statement = connect.createStatement();
                         statement.executeUpdate(deleteGrade);
 
-                    }// IF NOT THEN NVM
+                    }
 
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -637,9 +628,7 @@ public class dashboardController implements Initializable {
                     alert.setContentText("Successfully Deleted!");
                     alert.showAndWait();
 
-                    // TO UPDATE THE TABLEVIEW
                     addStudentsShowListData();
-                    // TO CLEAR THE FIELDS
                     addStudentsClear();
 
                 } else {
@@ -683,7 +672,7 @@ public class dashboardController implements Initializable {
             getData.path = file.getAbsolutePath();
 
         }
-    } //WHILE WE INSERT THE DATA ON STUDENT, WE SHOULD INSERT ALSO THE DATA TO STUDENT_GRADE
+    }
 
     public void addStudentsSearch() {
 
@@ -792,9 +781,7 @@ public class dashboardController implements Initializable {
         ObservableList ObList = FXCollections.observableArrayList(statusL);
         addStudents_status.setItems(ObList);
     }
-
-//    NOW WE NEED THE COURSE, SO LETS WORK NOW THE AVAILABLE COURSE FORM : ) 
-//    LETS WORK FIRST THE ADD STUDENTS FORM : ) 
+ 
     public ObservableList<studentData> addStudentsListData() {
 
         ObservableList<studentData> listStudents = FXCollections.observableArrayList();
@@ -887,7 +874,7 @@ public class dashboardController implements Initializable {
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             } else {
-//            CHECK IF THE COURSE YOU WANT TO INSERT IS ALREADY EXIST!
+
                 String checkData = "SELECT course FROM course WHERE course = '"
                         + availableCourse_course.getText() + "'";
 
@@ -914,9 +901,7 @@ public class dashboardController implements Initializable {
                     alert.setContentText("Successfully Added!");
                     alert.showAndWait();
 
-                    // TO BECOME UPDATED OUR TABLEVIEW ONCE THE DATA WE GAVE SUCCESSFUL
                     availableCourseShowListData();
-                    // TO CLEAR THE TEXT FIELDS
                     availableCourseClear();
 
                 }
@@ -964,9 +949,7 @@ public class dashboardController implements Initializable {
                     alert.setContentText("Successfully Updated!");
                     alert.showAndWait();
 
-                    // TO BECOME UPDATED OUR TABLEVIEW ONCE THE DATA WE GAVE SUCCESSFUL
                     availableCourseShowListData();
-                    // TO CLEAR THE TEXT FIELDS
                     availableCourseClear();
 
                 } else {
@@ -1000,7 +983,6 @@ public class dashboardController implements Initializable {
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             } else {
-//                ALL GOOD GUYS! NOW LETS PROCEED TO ADD STUDENTS FORM
                 alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Message");
                 alert.setHeaderText(null);
@@ -1017,9 +999,7 @@ public class dashboardController implements Initializable {
                     alert.setContentText("Successfully Deleted!");
                     alert.showAndWait();
 
-                    // TO BECOME UPDATED OUR TABLEVIEW ONCE THE DATA WE GAVE SUCCESSFUL
                     availableCourseShowListData();
-                    // TO CLEAR THE TEXT FIELDS
                     availableCourseClear();
 
                 } else {
@@ -1116,7 +1096,7 @@ public class dashboardController implements Initializable {
 
             if (finalCheck1 == 0 || finalCheck2 == 0) {
                 finalResult = 0;
-            } else { //LIKE (X+Y)/2 AVE WE NEED TO FIND FOR FINALS
+            } else {
                 finalResult = (Double.parseDouble(studentGrade_firstSem.getText())
                         + Double.parseDouble(studentGrade_secondSem.getText()) / 2);
             }
@@ -1158,13 +1138,12 @@ public class dashboardController implements Initializable {
                     alert.setContentText("Successfully Updated!");
                     alert.showAndWait();
 
-                    // TO UPDATE THE TABLEVIEW
                     studentGradesShowListData();
                 } else {
                     return;
                 }
 
-            }// NOT WE ARE CLOSER TO THE ENDING PART  :) LETS PROCEED TO DASHBOARD FORM 
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1218,8 +1197,7 @@ public class dashboardController implements Initializable {
         studentGrade_col_course.setCellValueFactory(new PropertyValueFactory<>("course"));
         studentGrade_col_firstSem.setCellValueFactory(new PropertyValueFactory<>("firstSem"));
         studentGrade_col_secondSem.setCellValueFactory(new PropertyValueFactory<>("secondSem"));
-        studentGrade_col_final.setCellValueFactory(new PropertyValueFactory<>("finals"));
-//        WE NEED TO FIX THE DELETE ON ADD STUDENT FORM 
+        studentGrade_col_final.setCellValueFactory(new PropertyValueFactory<>("finals")); 
         studentGrade_tableView.setItems(studentGradesList);
 
     }
@@ -1294,10 +1272,8 @@ public class dashboardController implements Initializable {
 
             if (option.get().equals(ButtonType.OK)) {
 
-                //HIDE YOUR DASHBOARD FORM
                 logout.getScene().getWindow().hide();
 
-                //LINK YOUR LOGIN FORM 
                 Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -1336,8 +1312,7 @@ public class dashboardController implements Initializable {
     public void displayUsername(){
         username.setText(getData.username);
     }
-    // THATS IT FOR THESE VIDEOS, THANKS FOR WATCHING!! SUBSCRIBE AND TURN ON NOTIFICATION 
-//    TO NOTIF YOU FOR MORE UPCOMING VIDEOS THANKS FOR THE SUPPORT! : )
+    
     public void defaultNav(){
         home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
     }
@@ -1349,7 +1324,7 @@ public class dashboardController implements Initializable {
             availableCourse_form.setVisible(false);
             studentGrade_form.setVisible(false);
 
-            home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+            home_btn.setStyle("-fx-background-color:#99B080;");
             addStudents_btn.setStyle("-fx-background-color:transparent");
             availableCourse_btn.setStyle("-fx-background-color:transparent");
             studentGrade_btn.setStyle("-fx-background-color:transparent");
@@ -1367,12 +1342,11 @@ public class dashboardController implements Initializable {
             availableCourse_form.setVisible(false);
             studentGrade_form.setVisible(false);
 
-            addStudents_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+            addStudents_btn.setStyle("-fx-background-color:#99B080;");
             home_btn.setStyle("-fx-background-color:transparent");
             availableCourse_btn.setStyle("-fx-background-color:transparent");
             studentGrade_btn.setStyle("-fx-background-color:transparent");
 
-//            TO BECOME UPDATED ONCE YOU CLICK THE ADD STUDENTS BUTTON ON NAV
             addStudentsShowListData();
             addStudentsYearList();
             addStudentsGenderList();
@@ -1386,7 +1360,7 @@ public class dashboardController implements Initializable {
             availableCourse_form.setVisible(true);
             studentGrade_form.setVisible(false);
 
-            availableCourse_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+            availableCourse_btn.setStyle("-fx-background-color:#99B080;");
             addStudents_btn.setStyle("-fx-background-color:transparent");
             home_btn.setStyle("-fx-background-color:transparent");
             studentGrade_btn.setStyle("-fx-background-color:transparent");
@@ -1399,7 +1373,7 @@ public class dashboardController implements Initializable {
             availableCourse_form.setVisible(false);
             studentGrade_form.setVisible(true);
 
-            studentGrade_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #3f82ae, #26bf7d);");
+            studentGrade_btn.setStyle("-fx-background-color:#99B080;");
             addStudents_btn.setStyle("-fx-background-color:transparent");
             availableCourse_btn.setStyle("-fx-background-color:transparent");
             home_btn.setStyle("-fx-background-color:transparent");
@@ -1419,8 +1393,6 @@ public class dashboardController implements Initializable {
         stage.setIconified(true);
     }
 
-    // SORRY ABOUT THAT, I JUST NAMED THE DIFFERENT COMPONENTS WITH THE SAME NAME 
-    // MAKE SURE THAT THE NAME YOU GAVE TO THEM ARE DIFFERENT TO THE OTHER OKAY?
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         displayUsername();
@@ -1433,7 +1405,6 @@ public class dashboardController implements Initializable {
         homeDisplayFemaleEnrolledChart();
         homeDisplayTotalEnrolledChart();
 
-        // TO SHOW IMMIDIATELY WHEN WE PROCEED TO DASHBOARD APPLICATION FORM
         addStudentsShowListData();
         addStudentsYearList();
         addStudentsGenderList();
